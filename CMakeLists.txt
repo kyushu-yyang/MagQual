@@ -11,6 +11,9 @@ cmake_minimum_required( VERSION 3.0 )
 # project name
 project( MagQual CXX )
 
+# set the c++11
+set(CMAKE_CXX_STANDARD, 11)
+
 #
 set(Boost_USE_STATIC_LIBS ON)
 
@@ -23,7 +26,6 @@ set( MAIN_FILE main.cxx )
 
 # include the header files
 add_subdirectory(src)
-
 
 # for BOOST
 find_package( Boost REQUIRED )
@@ -54,6 +56,7 @@ add_executable( ${EXE_FILE}  ${MAIN_FILE} )
 
 # include the head files
 #target_include_directories( ${EXE_FILE} PUBLIC ${PROJECT_SOURCE_DIR}/include )
+target_link_libraries( ${EXE_FILE} MagQual )
 
 # link the libraries
 if (Boost_FOUND)
