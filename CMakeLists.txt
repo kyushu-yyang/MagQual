@@ -27,23 +27,14 @@ set( MAIN_FILE main.cxx )
 # include the header files
 add_subdirectory(src)
 
-# for BOOST
-find_package( Boost REQUIRED )
-message(STATUS "check Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}" )
-message(STATUS "check Boost_LIBRARY_DIRS: ${Boost_LIBRARY_DIRS}" )
 
 # for ROOT
 find_package( ROOT REQUIRED )
 message(STATUS "check ROOT_INCLUDE_DIRS: ${ROOT_INCLUDE_DIRS}" )
 message(STATUS "check ROOT_LIBRARIES: ${ROOT_LIBRARIES}" )
 
-# include the libraries head file
-if (Boost_FOUND)
-  include_directories( ${PROJECT_SOURCE_DIR}  ${Boost_INCLUDE_DIRS} )
-else()
-  message(FATAL_ERROR "boost is not found." )
-endif()
 
+# include the libraries head file
 if (ROOT_FOUND)
   include_directories( ${PROJECT_SOURCE_DIR} ${ROOT_INCLUDE_DIRS} )
 else()
@@ -59,9 +50,9 @@ add_executable( ${EXE_FILE}  ${MAIN_FILE} )
 target_link_libraries( ${EXE_FILE} MagQual )
 
 # link the libraries
-if (Boost_FOUND)
-  target_link_libraries( ${EXE_FILE} ${Boost_LIBRARIES} )
-endif()
+#if (Boost_FOUND)
+#  target_link_libraries( ${EXE_FILE} ${Boost_LIBRARIES} )
+#endif()
 
 if (ROOT_FOUND)
   target_link_libraries( ${EXE_FILE} ${ROOT_LIBRARIES} )

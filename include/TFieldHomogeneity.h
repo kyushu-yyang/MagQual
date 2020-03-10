@@ -7,6 +7,10 @@
 /// @author: Y.Yang
 /// @date  : 2020.03.07
 
+#include <Eigen/Dense>
+#include <boost/math/quadrature/trapezoidal.hpp>
+
+using namespace Eigen;
 
 namespace MagQual
 { class TFieldHomogeneity; }
@@ -24,7 +28,7 @@ enum Homogeneity
 {
   kPeakPeak,
   kVRMS,
-  kSVMS
+  kSRMS
 };
 
 
@@ -32,10 +36,16 @@ enum Homogeneity
 class MagQual::TFieldHomogeneity
 {
   public:
+    /// constructor
+    TFieldHomogeneity();
+
+    /// deconstructor
+    virtual ~TFieldHomogeneity();
 
 
   private:
-
+    int fNLegendre;
+    MatrixXd fAnm;
 
 };
 
